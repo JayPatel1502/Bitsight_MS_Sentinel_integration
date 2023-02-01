@@ -9,18 +9,15 @@
             "type": "string"
         },
         "WorkspaceID": {
-            "type": "securestring",
-            "defaultValue": "",
+            "type": "string",
 			"minLength": 1
         },
         "WorkspaceKey": {
             "type": "securestring",
-            "defaultValue": "",
 			"minLength": 1
         },
         "API_token": {
             "type": "securestring",
-            "defaultValue": "",
 			"minLength": 1
         },
         "Companies":{

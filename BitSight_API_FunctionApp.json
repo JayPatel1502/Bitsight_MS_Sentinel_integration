@@ -1,33 +1,222 @@
 {
-    "id": "BitSightAlerts",
-    "title": "BitSight Alerts",
-    "publisher": "BitSight",
-    "descriptionMarkdown": "The [BitSight](https://www.BitSight.com/) Alerts connector gives the capability to ingest BitSight Alerts into Microsoft Sentinel through the BitSight REST API. Refer to the API documentation: `https://<YourBitSightInstance>.BitSight.com/api/v1/docs` for more information. The connector provides the ability to get alert information from the BitSight platform and to identify and prioritize threats in your environment. BitSight uses your existing infrastructure to discover and identify devices without having to deploy any agents. ",
-    "additionalRequirementBanner": "These queries and workbooks are dependent on a parser based on Kusto to work as expected. Follow the steps to use this Kusto functions alias **BitSightAlerts** in queries and workbooks [Follow steps to get this Kusto functions>](https://aka.ms/sentinel-BitSightAlertsAPI-parser).",
+    "id": "BitSight",
+    "title": "Bitsight data connector",
+    "publisher": "BitSight Technologies, Inc.",
+    "descriptionMarkdown": "The [BitSight](https://www.BitSight.com/) Data Connector supports evidence-based cyber risk monitoring by bringing BitSight data in Microsoft Sentinel.",
     "graphQueries": [
         {
             "metricName": "Total Alerts data received",
-            "legend": "BitSight_Alerts_CL",
-            "baseQuery": "BitSight_Alerts_CL"
+            "legend": "Alerts_data_CL",
+            "baseQuery": "Alerts_data_CL"
+        },
+        {
+            "metricName": "Total Breaches data received",
+            "legend": "Breaches_data_CL",
+            "baseQuery": "Breaches_data_CL"
+        },
+        {
+            "metricName": "Total Company Details received",
+            "legend": "Company_details_CL",
+            "baseQuery": "Company_details_CL"
+        },
+        {
+            "metricName": "Total Company Ratings received",
+            "legend": "Company_rating_details_CL",
+            "baseQuery": "Company_rating_details_CL"
+        },
+        {
+            "metricName": "Total Diligence Historical Statistics data received",
+            "legend": "Diligence_historical_statistics_CL",
+            "baseQuery": "Diligence_historical_statistics_CL"
+        },
+        {
+            "metricName": "Total Diligence Statistics data received",
+            "legend": "Diligence_statistics_CL",
+            "baseQuery": "Diligence_statistics_CL"
+        },
+        {
+            "metricName": "Total Findings data received",
+            "legend": "Findings_data_CL",
+            "baseQuery": "Findings_data_CL"
+        },
+        {
+            "metricName": "Total Findings Summary data received",
+            "legend": "Findings_summary_CL",
+            "baseQuery": "Findings_summary_CL"
+        },
+        {
+            "metricName": "Total Graph data received",
+            "legend": "Graph_data_CL",
+            "baseQuery": "Graph_data_CL"
+        },
+        {
+            "metricName": "Total Industrial Statistics data received",
+            "legend": "Industrial_statistics_CL",
+            "baseQuery": "Industrial_statistics_CL"
+        },
+        {
+            "metricName": "Total Observation Statistics data received",
+            "legend": "Observation_statistics_CL",
+            "baseQuery": "Observation_statistics_CL"
         }
     ],
     "sampleQueries": [
         {
-            "description" : "BitSight Alert Events - All Alerts Activities.",
-            "query": "BitSight_Alerts_CL\n | sort by TimeGenerated desc"
+            "description" : "BitSight Alert Events - Alerts Event for all Companies in portfolio.",
+            "query": "Alerts_data_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Breaches Events - Breaches Event for all Companies in portfolio.",
+            "query": "Breaches_data_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Company Details Events - Company Details Event for all Companies in portfolio.",
+            "query": "Company_details_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Company Ratings Events - Company Ratings Event for all Companies.",
+            "query": "Company_rating_details_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Diligence Historical Statistics Events - Diligence Historical Statistics Event for all Companies.",
+            "query": "Diligence_historical_statistics_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Diligence Statistics Events - Diligence Statistics Event for all Companies.",
+            "query": "Diligence_statistics_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Findings Events - Findings Event for all Companies.",
+            "query": "Findings_data_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Findings Summary Events - Findings Summary Event for all Companies.",
+            "query": "Findings_summary_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Graph Events - Graph Event for all Companies.",
+            "query": "Graph_data_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Industrial Statistics Events - Industrial Statistics Event for all Companies.",
+            "query": "Industrial_statistics_CL\n | sort by TimeGenerated desc"
+        },
+        {
+            "description" : "BitSight Observation Statistics Events - Observation Statistics Event for all Companies.",
+            "query": "Observation_statistics_CL\n | sort by TimeGenerated desc"
         }
     ],
     "dataTypes": [
         {
-            "name": "BitSight_Alerts_CL",
+            "name": "Alerts_data_CL",
+            "lastDataReceivedQuery": "Alerts_data_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Breaches_data_CL",
             "lastDataReceivedQuery": "BitSight_Alerts_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Company_details_CL",
+            "lastDataReceivedQuery": "Company_details_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Company_rating_details_CL",
+            "lastDataReceivedQuery": "Company_rating_details_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Diligence_historical_statistics_CL",
+            "lastDataReceivedQuery": "Diligence_historical_statistics_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Diligence_statistics_CL",
+            "lastDataReceivedQuery": "Diligence_statistics_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Findings_data_CL",
+            "lastDataReceivedQuery": "Findings_data_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Findings_summary_CL",
+            "lastDataReceivedQuery": "Findings_summary_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Graph_data_CL",
+            "lastDataReceivedQuery": "Graph_data_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Industrial_statistics_CL",
+            "lastDataReceivedQuery": "Industrial_statistics_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+        },
+        {
+            "name": "Observation_statistics_CL",
+            "lastDataReceivedQuery": "Observation_statistics_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
         }
     ],
     "connectivityCriterias": [
         {
             "type": "IsConnectedQuery",
             "value": [
-                "BitSight_Alerts_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+                "Alerts_data_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Breaches_data_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Company_details_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Company_rating_details_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Diligence_historical_statistics_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Diligence_statistics_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Findings_data_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Findings_summary_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Graph_data_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Industrial_statistics_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
+            ]
+        },
+        {
+            "type": "IsConnectedQuery",
+            "value": [
+                "Observation_statistics_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(30d)"
             ]
         }
     ],
@@ -64,7 +253,7 @@
         },
         {
             "name": "REST API Credentials/permissions",
-            "description": "**BitSight Secret Key** is required.  See the documentation to learn more about API on the `https://<YourBitSightInstance>.BitSight.com/api/v1/doc`"
+            "description": "BitSight API Token is required.  See the documentation to [learn more](https://help.bitsighttech.com/hc/en-us/articles/115014888388-API-Token-Management) about API Token."
         }
         ]
     },
@@ -76,16 +265,13 @@
             "title": "",
             "description": ">**(Optional Step)** Securely store workspace and API authorization key(s) or token(s) in Azure Key Vault. Azure Key Vault provides a secure mechanism to store and retrieve key values. [Follow these instructions](https://docs.microsoft.com/azure/app-service/app-service-key-vault-references) to use Azure Key Vault with an Azure Function App."
         },
-		{
-			"description": ">**NOTE:** This data connector depends on a parser based on a Kusto Function to work as expected. [Follow these steps](https://aka.ms/sentinel-BitSightAlertsAPI-parser) to create the Kusto functions alias, **BitSightAlerts**"
-		},
         {
             "title": "",
-            "description": "**STEP 1 - Configuration steps for the BitSight API**\n\n Follow these instructions to create an BitSight API secret key.\n 1. Log into your BitSight instance\n 2. Navigate to Settings -> API Management\n 3. If the secret key has not already been created, press the Create button to create the secret key\n 4. To access the secret key, press the Show button\n 5. The secret key can now be copied and used during the BitSight Alerts connector configuration"
+            "description": "**STEP 1 - Steps to Create/Get Bitsight API Token**\n\n Follow these instructions to get a BitSight API Token.\n 1. For SPM App: Refer to the [User Preference](https://service.bitsight.com/app/spm/account) tab of your Account page, \n\t\tGo to Settings > Account > User Preferences > API Token.\n 2. For TPRM App: Refer to the [User Preference](https://service.bitsight.com/app/tprm/account) tab of your Account page, \n\t\tGo to Settings > Account > User Preferences > API Token.\n 3. For Classic BitSight: Go to your [Account](https://service.bitsight.com/settings) page, \n\t\tGo to Settings > Account > API Token."
         },
         {
             "title": "",
-            "description": "**STEP 2 - Choose ONE from the following two deployment options to deploy the connector and the associated Azure Function**\n\n>**IMPORTANT:** Before deploying the BitSight Alert data connector, have the Workspace ID and Workspace Primary Key (can be copied from the following) readily available.., as well as the BitSight API Authorization Key(s)",
+            "description": "**STEP 2 - Choose ONE from the following two deployment options to deploy the connector and the associated Azure Function**\n\n>**IMPORTANT:** Before deploying the BitSight data connector, have the Workspace ID and Workspace Primary Key (can be copied from the following) readily available.., as well as the BitSight API Token.",
             "instructions": [{
                 "parameters": {
                         "fillWith": [
@@ -108,19 +294,19 @@
         },
         {
             "title": "Option 1 - Azure Resource Manager (ARM) Template",
-            "description": "Use this method for automated deployment of the BitSight connector.\n\n1. Click the **Deploy to Azure** button below. \n\n\t[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJayPatel1502%2FBitsight_MS_Sentinel_integration%2Fmain%2Fazuredeploy_Connector_BitSight_AzureFunction.json)\n2. Select the preferred **Subscription**, **Resource Group** and **Location**. \n3. Enter the below information : \n\t\tFunction Name \n\t\tWorkspace ID \n\t\tWorkspace Key \n\t\tBitSight Secret Key \n\t\tBitSight URL (https://<BitSight-instance>.BitSight.com/api/v1/) \n\t\tBitSight Alert Table Name \n\t\tBitSight Schedule \n\t\tAvoid Duplicates (Default: true) \n4. Mark the checkbox labeled **I agree to the terms and conditions stated above**. \n5. Click **Purchase** to deploy."
+            "description": "Use this method for automated deployment of the BitSight connector.\n\n1. Click the **Deploy to Azure** button below. \n\n\t[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJayPatel1502%2FBitsight_MS_Sentinel_integration%2Fmain%2Fazuredeploy_Connector_BitSight_AzureFunction.json)\n2. Select the preferred **Subscription**, **Resource Group** and **Location**. \n3. Enter the below information : \n\t\tFunction Name \n\t\tWorkspace ID \n\t\tWorkspace Key \n\t\tAPI_token \n\t\tCompanies \n\t\tAlerts_Table_Name \n\t\tBreaches_Table_Name \n\t\tCompany_Table_Name \n\t\tCompany_Rating_Details_Table_Name \n\t\tDiligence_Historical_Statistics_Table_Name \n\t\tDiligence_Statistics_Table_Name \n\t\tFindings_Summary_Table_Name \n\t\tFindings_Table_Name \n\t\tGraph_Table_Name \n\t\tIndustrial_Statistics_Table_Name \n\t\tObservation_Statistics_Table_Name \n\t\tLog Level \n\t\tBitSight Schedule \n4. Mark the checkbox labeled **I agree to the terms and conditions stated above**. \n5. Click **Purchase** to deploy."
         },
         {
             "title": "Option 2 - Manual Deployment of Azure Functions",
-            "description": "Use the following step-by-step instructions to deploy the BitSight Alert data connector manually with Azure Functions (Deployment via Visual Studio Code)."
+            "description": "Use the following step-by-step instructions to deploy the BitSight data connector manually with Azure Functions (Deployment via Visual Studio Code)."
         },
         {
             "title": "",
-            "description": "**1. Deploy a Function App**\n\n> **NOTE:** You will need to [prepare VS code](https://docs.microsoft.com/azure/azure-functions/functions-create-first-function-python#prerequisites) for Azure function development.\n\n1. Download the [Azure Function App](https://aka.ms/sentinel-BitSightAlertsAPI-functionapp) file. Extract archive to your local development computer.\n2. Start VS Code. Choose File in the main menu and select Open Folder.\n3. Select the top level folder from extracted files.\n4. Choose the Azure icon in the Activity bar, then in the **Azure: Functions** area, choose the **Deploy to function app** button.\nIf you aren't already signed in, choose the Azure icon in the Activity bar, then in the **Azure: Functions** area, choose **Sign in to Azure**\nIf you're already signed in, go to the next step.\n5. Provide the following information at the prompts:\n\n\ta. **Select folder:** Choose a folder from your workspace or browse to one that contains your function app.\n\n\tb. **Select Subscription:** Choose the subscription to use.\n\n\tc. Select **Create new Function App in Azure** (Don't choose the Advanced option)\n\n\td. **Enter a globally unique name for the function app:** Type a name that is valid in a URL path. The name you type is validated to make sure that it's unique in Azure Functions. (e.g. BitSightXXXXX).\n\n\te. **Select a runtime:** Choose Python 3.8 or above.\n\n\tf. Select a location for new resources. For better performance and lower costs choose the same [region](https://azure.microsoft.com/regions/) where Microsoft Sentinel is located.\n\n6. Deployment will begin. A notification is displayed after your function app is created and the deployment package is applied.\n7. Go to Azure Portal for the Function App configuration."
+            "description": "**1. Deploy a Function App**\n\n> **NOTE:** You will need to [prepare VS code](https://docs.microsoft.com/azure/azure-functions/functions-create-first-function-python#prerequisites) for Azure function development.\n\n1. Download the [Azure Function App](https://aka.ms/sentinel-BitSight-functionapp) file. Extract archive to your local development computer.\n2. Start VS Code. Choose File in the main menu and select Open Folder.\n3. Select the top level folder from extracted files.\n4. Choose the Azure icon in the Activity bar, then in the **Azure: Functions** area, choose the **Deploy to function app** button.\nIf you aren't already signed in, choose the Azure icon in the Activity bar, then in the **Azure: Functions** area, choose **Sign in to Azure**\nIf you're already signed in, go to the next step.\n5. Provide the following information at the prompts:\n\n\ta. **Select folder:** Choose a folder from your workspace or browse to one that contains your function app.\n\n\tb. **Select Subscription:** Choose the subscription to use.\n\n\tc. Select **Create new Function App in Azure** (Don't choose the Advanced option)\n\n\td. **Enter a globally unique name for the function app:** Type a name that is valid in a URL path. The name you type is validated to make sure that it's unique in Azure Functions. (e.g. BitSightXXXXX).\n\n\te. **Select a runtime:** Choose Python 3.8 or above.\n\n\tf. Select a location for new resources. For better performance and lower costs choose the same [region](https://azure.microsoft.com/regions/) where Microsoft Sentinel is located.\n\n6. Deployment will begin. A notification is displayed after your function app is created and the deployment package is applied.\n7. Go to Azure Portal for the Function App configuration."
         },
         {
             "title": "",
-            "description": "**2. Configure the Function App**\n\n1. In the Function App, select the Function App Name and select **Configuration**.\n2. In the **Application settings** tab, select **+ New application setting**.\n3. Add each of the following application settings individually, with their respective values (case-sensitive): \n\t\tWorkspace ID \n\t\tWorkspace Key \n\t\tBitSight Secret Key \n\t\tBitSight URL (https://<BitSight-instance>.BitSight.com/api/v1/) \n\t\tBitSight Alert Table Name \n\t\tBitSight Schedule \n\t\tAvoid Duplicates (Default: true) \n\t\tlogAnalyticsUri (optional) \n - Use logAnalyticsUri to override the log analytics API endpoint for dedicated cloud. For example, for public cloud, leave the value empty; for Azure GovUS cloud environment, specify the value in the following format: `https://<CustomerId>.ods.opinsights.azure.us`.\n4. Once all application settings have been entered, click **Save**."
+            "description": "**2. Configure the Function App**\n\n1. In the Function App, select the Function App Name and select **Configuration**.\n2. In the **Application settings** tab, select **+ New application setting**.\n3. Add each of the following application settings individually, with their respective values (case-sensitive): \n\t\tWorkspaceID \n\t\tWorkspaceKey \n\t\tAPI_token \n\t\tCompanies \n\t\tAlerts_Table_Name \n\t\tBreaches_Table_Name \n\t\tCompany_Table_Name \n\t\tCompany_Rating_Details_Table_Name \n\t\tDiligence_Historical_Statistics_Table_Name \n\t\tDiligence_Statistics_Table_Name \n\t\tFindings_Summary_Table_Name \n\t\tFindings_Table_Name \n\t\tGraph_Table_Name \n\t\tIndustrial_Statistics_Table_Name \n\t\tObservation_Statistics_Table_Name \n\t\tLogLevel \n\t\tSchedule \n4. Once all application settings have been entered, click **Save**."
         }
     ]
 }
